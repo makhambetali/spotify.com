@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+    <!-- <link rel="stylesheet" href="/static//css/register.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <a href="#" class="content-logo">Melody</a>
+            <p class="content-text">Sigh up to continue access</p>
+        </div>
+        <div class="main">
+            {% if error_messages %}
+ 
+        {% for msg in  error_messages.values %}
+        {{msg}}
+        {% endfor %}
+ 
+    {% endif %}
+            
+           
+            <form method="post" action="" class="info">
+                <h1 class="main-header">Sign Up</h1>
+                
+                <div class="inputs">
+                    <div class="names">
+                        {{form.first_name}}
+                        {{form.last_name}}
+                    </div>
+                    {{form.username}}
+                    {{form.email}}
+                    {{form.password1}}
+                    {{form.password2}}
+                </div>
+                <button class="btn continue">Continue</button>
+            </form>
+            <p class="main-text">If you have account already. <a href="{%url 'users:login'%}" class="log">Log In</a></p>
+        </div>
+    </div>
+    <script>
+    function hideElementAfterTimeout() {
+        var tempElems = document.querySelectorAll('.errorlist');
+        tempElems.forEach(each => {
+            setTimeout(function() {
+            each.remove()
+        }, 5000); })
+   
+    }
+    hideElementAfterTimeout()
+    </script>
+</body>
+</html>

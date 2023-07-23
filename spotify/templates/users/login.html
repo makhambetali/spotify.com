@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <a href="#" class="content-logo">Melody</a>
+            <div>
+                <h1 class="content-header">Welcome page</h1>
+                <p class="content-text">Sigh in to continue access</p>
+            </div>
+            <a href="#d" class="content-link">google.com</a>
+        </div>
+        <div class="main">
+            <form method="post" class="info">
+                <h1 class="main-header">Sign In</h1>
+                {% csrf_token %}
+                <div class="inputs">
+                    {{ form.as_p }}
+                </div>
+                <input type="checkbox" id="id_remember_me" name="remember_me">
+  <label for="id_remember_me">Remember Me</label>
+                <button type="submit" class="btn continue">Login</button>
+            </form>
+            <p class="main-text">If you dont have account yet. <a href="{% url 'users:register'%}" class="reg">Register</a></p>
+        </div>
+    </div>
+</body>
+</html>
