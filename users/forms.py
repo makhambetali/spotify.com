@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
-
+from django.utils.translation import gettext_lazy as _
 
 class NewUserForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'main-input', 'placeholder':'First Name'}))
@@ -21,3 +21,12 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+        
+        
+class CustomAuthForm(AuthenticationForm, forms.Form):
+    username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, 'class':'main-input'}))
+    password = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password", 'class':'main-input'}),
+    )
